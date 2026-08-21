@@ -1,7 +1,7 @@
 {
   "version": 1,
   "status": "ok",
-  "generated_at": "2026-08-21T16:11:28+00:00",
+  "generated_at": "2026-08-21T16:17:57+00:00",
   "valid_days": 7,
   "method": "global order uses average tied rank by city and horizon using Zevs overall_error; city orders use category errors by horizon",
   "horizon_buckets": [
@@ -9,57 +9,57 @@
     "11-48h",
     "3-5 dni"
   ],
-  "sample_total": 126,
+  "sample_total": 144,
   "source_order": [
     "meteoswiss_icon_ch1",
     "gfs_seamless",
+    "ecmwf_ifs025",
     "best_match",
     "arso",
-    "ecmwf_ifs025",
     "icon_eu"
   ],
   "ranked_sources": [
     {
       "source_id": "meteoswiss_icon_ch1",
       "label": "Open-Meteo - MeteoSwiss ICON CH1",
-      "average_rank": 2.667,
+      "average_rank": 2.5,
       "ranked_contexts": 6,
-      "samples": 21
+      "samples": 24
     },
     {
       "source_id": "gfs_seamless",
       "label": "Open-Meteo - NOAA GFS",
-      "average_rank": 3.167,
+      "average_rank": 2.833,
       "ranked_contexts": 6,
-      "samples": 21
-    },
-    {
-      "source_id": "best_match",
-      "label": "Open-Meteo - optimiziran",
-      "average_rank": 3.5,
-      "ranked_contexts": 6,
-      "samples": 21
-    },
-    {
-      "source_id": "arso",
-      "label": "ARSO",
-      "average_rank": 3.667,
-      "ranked_contexts": 6,
-      "samples": 21
+      "samples": 24
     },
     {
       "source_id": "ecmwf_ifs025",
       "label": "Open-Meteo - ECMWF IFS 0.25",
+      "average_rank": 3.5,
+      "ranked_contexts": 6,
+      "samples": 24
+    },
+    {
+      "source_id": "best_match",
+      "label": "Open-Meteo - optimiziran",
       "average_rank": 3.667,
       "ranked_contexts": 6,
-      "samples": 21
+      "samples": 24
+    },
+    {
+      "source_id": "arso",
+      "label": "ARSO",
+      "average_rank": 3.833,
+      "ranked_contexts": 6,
+      "samples": 24
     },
     {
       "source_id": "icon_eu",
       "label": "Open-Meteo - DWD ICON EU",
-      "average_rank": 4.333,
+      "average_rank": 4.667,
       "ranked_contexts": 6,
-      "samples": 21
+      "samples": 24
     }
   ],
   "cities": {
@@ -67,27 +67,27 @@
       "1-10h": {
         "temperature": [
           "gfs_seamless",
-          "arso",
           "best_match",
+          "arso",
           "meteoswiss_icon_ch1",
           "icon_eu",
           "ecmwf_ifs025"
         ],
         "precipitation": [
           "arso",
-          "best_match",
           "gfs_seamless",
-          "meteoswiss_icon_ch1",
           "ecmwf_ifs025",
-          "icon_eu"
+          "meteoswiss_icon_ch1",
+          "icon_eu",
+          "best_match"
         ],
         "wind": [
-          "icon_eu",
-          "ecmwf_ifs025",
           "best_match",
           "arso",
-          "meteoswiss_icon_ch1",
-          "gfs_seamless"
+          "ecmwf_ifs025",
+          "icon_eu",
+          "gfs_seamless",
+          "meteoswiss_icon_ch1"
         ]
       }
     },
@@ -104,17 +104,17 @@
         "precipitation": [
           "icon_eu",
           "gfs_seamless",
-          "ecmwf_ifs025",
           "best_match",
+          "ecmwf_ifs025",
           "arso",
           "meteoswiss_icon_ch1"
         ],
         "wind": [
           "gfs_seamless",
           "arso",
+          "icon_eu",
           "meteoswiss_icon_ch1",
           "best_match",
-          "icon_eu",
           "ecmwf_ifs025"
         ]
       }
@@ -208,25 +208,25 @@
         "temperature": [
           "arso",
           "meteoswiss_icon_ch1",
+          "best_match",
           "gfs_seamless",
           "ecmwf_ifs025",
-          "best_match",
           "icon_eu"
         ],
         "precipitation": [
+          "ecmwf_ifs025",
           "icon_eu",
           "gfs_seamless",
+          "arso",
           "best_match",
-          "meteoswiss_icon_ch1",
-          "ecmwf_ifs025",
-          "arso"
+          "meteoswiss_icon_ch1"
         ],
         "wind": [
           "arso",
           "ecmwf_ifs025",
           "icon_eu",
-          "meteoswiss_icon_ch1",
           "gfs_seamless",
+          "meteoswiss_icon_ch1",
           "best_match"
         ]
       }
