@@ -1,9 +1,9 @@
 {
   "version": 1,
   "status": "ok",
-  "generated_at": "2026-08-21T16:09:27+00:00",
+  "generated_at": "2026-08-21T16:11:28+00:00",
   "valid_days": 7,
-  "method": "average tied rank by city and horizon using Zevs overall_error",
+  "method": "global order uses average tied rank by city and horizon using Zevs overall_error; city orders use category errors by horizon",
   "horizon_buckets": [
     "1-10h",
     "11-48h",
@@ -62,6 +62,176 @@
       "samples": 21
     }
   ],
+  "cities": {
+    "Ljubljana": {
+      "1-10h": {
+        "temperature": [
+          "gfs_seamless",
+          "arso",
+          "best_match",
+          "meteoswiss_icon_ch1",
+          "icon_eu",
+          "ecmwf_ifs025"
+        ],
+        "precipitation": [
+          "arso",
+          "best_match",
+          "gfs_seamless",
+          "meteoswiss_icon_ch1",
+          "ecmwf_ifs025",
+          "icon_eu"
+        ],
+        "wind": [
+          "icon_eu",
+          "ecmwf_ifs025",
+          "best_match",
+          "arso",
+          "meteoswiss_icon_ch1",
+          "gfs_seamless"
+        ]
+      }
+    },
+    "Maribor": {
+      "1-10h": {
+        "temperature": [
+          "ecmwf_ifs025",
+          "gfs_seamless",
+          "meteoswiss_icon_ch1",
+          "best_match",
+          "icon_eu",
+          "arso"
+        ],
+        "precipitation": [
+          "icon_eu",
+          "gfs_seamless",
+          "ecmwf_ifs025",
+          "best_match",
+          "arso",
+          "meteoswiss_icon_ch1"
+        ],
+        "wind": [
+          "gfs_seamless",
+          "arso",
+          "meteoswiss_icon_ch1",
+          "best_match",
+          "icon_eu",
+          "ecmwf_ifs025"
+        ]
+      }
+    },
+    "Celje": {
+      "1-10h": {
+        "temperature": [
+          "meteoswiss_icon_ch1",
+          "arso",
+          "gfs_seamless",
+          "best_match",
+          "ecmwf_ifs025",
+          "icon_eu"
+        ],
+        "precipitation": [
+          "best_match",
+          "ecmwf_ifs025",
+          "meteoswiss_icon_ch1",
+          "gfs_seamless",
+          "icon_eu",
+          "arso"
+        ],
+        "wind": [
+          "arso",
+          "ecmwf_ifs025",
+          "icon_eu",
+          "best_match",
+          "meteoswiss_icon_ch1",
+          "gfs_seamless"
+        ]
+      }
+    },
+    "Koper": {
+      "1-10h": {
+        "temperature": [
+          "meteoswiss_icon_ch1",
+          "best_match",
+          "ecmwf_ifs025",
+          "icon_eu",
+          "gfs_seamless",
+          "arso"
+        ],
+        "precipitation": [
+          "meteoswiss_icon_ch1",
+          "gfs_seamless",
+          "ecmwf_ifs025",
+          "icon_eu",
+          "arso",
+          "best_match"
+        ],
+        "wind": [
+          "ecmwf_ifs025",
+          "meteoswiss_icon_ch1",
+          "gfs_seamless",
+          "icon_eu",
+          "arso",
+          "best_match"
+        ]
+      }
+    },
+    "Kranj": {
+      "1-10h": {
+        "temperature": [
+          "best_match",
+          "gfs_seamless",
+          "ecmwf_ifs025",
+          "arso",
+          "meteoswiss_icon_ch1",
+          "icon_eu"
+        ],
+        "precipitation": [
+          "arso",
+          "ecmwf_ifs025",
+          "icon_eu",
+          "gfs_seamless",
+          "best_match",
+          "meteoswiss_icon_ch1"
+        ],
+        "wind": [
+          "best_match",
+          "meteoswiss_icon_ch1",
+          "ecmwf_ifs025",
+          "arso",
+          "icon_eu",
+          "gfs_seamless"
+        ]
+      }
+    },
+    "Novo mesto": {
+      "1-10h": {
+        "temperature": [
+          "arso",
+          "meteoswiss_icon_ch1",
+          "gfs_seamless",
+          "ecmwf_ifs025",
+          "best_match",
+          "icon_eu"
+        ],
+        "precipitation": [
+          "icon_eu",
+          "gfs_seamless",
+          "best_match",
+          "meteoswiss_icon_ch1",
+          "ecmwf_ifs025",
+          "arso"
+        ],
+        "wind": [
+          "arso",
+          "ecmwf_ifs025",
+          "icon_eu",
+          "meteoswiss_icon_ch1",
+          "gfs_seamless",
+          "best_match"
+        ]
+      }
+    }
+  },
   "fallback_order": [
     "arso",
     "best_match",
