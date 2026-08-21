@@ -1,7 +1,7 @@
 {
   "version": 1,
   "status": "ok",
-  "generated_at": "2026-08-21T13:07:41+00:00",
+  "generated_at": "2026-08-21T13:08:05+00:00",
   "valid_days": 7,
   "method": "average tied rank by city and horizon using Zevs overall_error",
   "horizon_buckets": [
