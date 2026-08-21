@@ -1,7 +1,7 @@
 {
   "version": 1,
   "status": "ok",
-  "generated_at": "2026-08-21T13:13:15+00:00",
+  "generated_at": "2026-08-21T14:10:42+00:00",
   "valid_days": 7,
   "method": "average tied rank by city and horizon using Zevs overall_error",
   "horizon_buckets": [
@@ -9,57 +9,57 @@
     "11-48h",
     "3-5 dni"
   ],
-  "sample_total": 36,
+  "sample_total": 60,
   "source_order": [
     "meteoswiss_icon_ch1",
     "ecmwf_ifs025",
     "arso",
-    "best_match",
     "gfs_seamless",
-    "icon_eu"
+    "icon_eu",
+    "best_match"
   ],
   "ranked_sources": [
     {
       "source_id": "meteoswiss_icon_ch1",
       "label": "Open-Meteo - MeteoSwiss ICON CH1",
-      "average_rank": 2.333,
+      "average_rank": 2.0,
       "ranked_contexts": 6,
-      "samples": 6
+      "samples": 10
     },
     {
       "source_id": "ecmwf_ifs025",
       "label": "Open-Meteo - ECMWF IFS 0.25",
-      "average_rank": 2.667,
+      "average_rank": 3.167,
       "ranked_contexts": 6,
-      "samples": 6
+      "samples": 10
     },
     {
       "source_id": "arso",
       "label": "ARSO",
       "average_rank": 3.333,
       "ranked_contexts": 6,
-      "samples": 6
-    },
-    {
-      "source_id": "best_match",
-      "label": "Open-Meteo - optimiziran",
-      "average_rank": 4.0,
-      "ranked_contexts": 6,
-      "samples": 6
+      "samples": 10
     },
     {
       "source_id": "gfs_seamless",
       "label": "Open-Meteo - NOAA GFS",
-      "average_rank": 4.0,
+      "average_rank": 3.333,
       "ranked_contexts": 6,
-      "samples": 6
+      "samples": 10
     },
     {
       "source_id": "icon_eu",
       "label": "Open-Meteo - DWD ICON EU",
-      "average_rank": 4.667,
+      "average_rank": 4.167,
       "ranked_contexts": 6,
-      "samples": 6
+      "samples": 10
+    },
+    {
+      "source_id": "best_match",
+      "label": "Open-Meteo - optimiziran",
+      "average_rank": 5.0,
+      "ranked_contexts": 6,
+      "samples": 10
     }
   ],
   "fallback_order": [
