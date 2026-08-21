@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "status": "insufficient_data",
+  "generated_at": "2026-08-21T09:46:36+00:00",
+  "valid_days": 7,
+  "method": "average tied rank by city and horizon using Zevs overall_error",
+  "horizon_buckets": [
+    "1-10h",
+    "11-48h",
+    "3-5 dni"
+  ],
+  "sample_total": 0,
+  "source_order": [
+    "arso",
+    "best_match",
+    "icon_eu",
+    "ecmwf_ifs025",
+    "meteoswiss_icon_ch1",
+    "gfs_seamless"
+  ],
+  "ranked_sources": [],
+  "fallback_order": [
+    "arso",
+    "best_match",
+    "icon_eu",
+    "ecmwf_ifs025",
+    "meteoswiss_icon_ch1",
+    "gfs_seamless"
+  ]
+}
