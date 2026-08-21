@@ -1,7 +1,7 @@
 {
   "version": 1,
   "status": "ok",
-  "generated_at": "2026-08-21T18:09:13+00:00",
+  "generated_at": "2026-08-21T18:11:06+00:00",
   "valid_days": 7,
   "method": "global order uses average tied rank by city and horizon using Zevs overall_error; city orders use category errors by horizon",
   "horizon_buckets": [
@@ -9,7 +9,7 @@
     "11-48h",
     "3-5 dni"
   ],
-  "sample_total": 204,
+  "sample_total": 216,
   "source_order": [
     "meteoswiss_icon_ch1",
     "ecmwf_ifs025",
@@ -22,44 +22,44 @@
     {
       "source_id": "meteoswiss_icon_ch1",
       "label": "Open-Meteo - MeteoSwiss ICON CH1",
-      "average_rank": 2.0,
+      "average_rank": 2.167,
       "ranked_contexts": 6,
-      "samples": 34
+      "samples": 36
     },
     {
       "source_id": "ecmwf_ifs025",
       "label": "Open-Meteo - ECMWF IFS 0.25",
       "average_rank": 3.0,
       "ranked_contexts": 6,
-      "samples": 34
+      "samples": 36
     },
     {
       "source_id": "arso",
       "label": "ARSO",
-      "average_rank": 3.333,
+      "average_rank": 3.167,
       "ranked_contexts": 6,
-      "samples": 34
+      "samples": 36
     },
     {
       "source_id": "gfs_seamless",
       "label": "Open-Meteo - NOAA GFS",
       "average_rank": 3.5,
       "ranked_contexts": 6,
-      "samples": 34
+      "samples": 36
     },
     {
       "source_id": "best_match",
       "label": "Open-Meteo - optimiziran",
-      "average_rank": 3.833,
+      "average_rank": 3.667,
       "ranked_contexts": 6,
-      "samples": 34
+      "samples": 36
     },
     {
       "source_id": "icon_eu",
       "label": "Open-Meteo - DWD ICON EU",
-      "average_rank": 5.333,
+      "average_rank": 5.5,
       "ranked_contexts": 6,
-      "samples": 34
+      "samples": 36
     }
   ],
   "cities": {
@@ -97,23 +97,23 @@
           "ecmwf_ifs025",
           "gfs_seamless",
           "meteoswiss_icon_ch1",
-          "best_match",
           "arso",
+          "best_match",
           "icon_eu"
         ],
         "precipitation": [
           "best_match",
-          "icon_eu",
-          "gfs_seamless",
           "ecmwf_ifs025",
+          "gfs_seamless",
+          "icon_eu",
           "arso",
           "meteoswiss_icon_ch1"
         ],
         "wind": [
           "arso",
           "gfs_seamless",
-          "icon_eu",
           "ecmwf_ifs025",
+          "icon_eu",
           "best_match",
           "meteoswiss_icon_ch1"
         ]
