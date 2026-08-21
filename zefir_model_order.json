@@ -1,7 +1,7 @@
 {
   "version": 1,
   "status": "ok",
-  "generated_at": "2026-08-21T18:11:06+00:00",
+  "generated_at": "2026-08-21T18:23:52+00:00",
   "valid_days": 7,
   "method": "global order uses average tied rank by city and horizon using Zevs overall_error; city orders use category errors by horizon",
   "horizon_buckets": [
