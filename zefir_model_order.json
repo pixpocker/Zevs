@@ -1,7 +1,7 @@
 {
   "version": 1,
   "status": "ok",
-  "generated_at": "2026-08-23T17:11:20+00:00",
+  "generated_at": "2026-08-23T20:43:54+00:00",
   "valid_days": 7,
   "method": "global order uses average tied rank by city and horizon using Zevs overall_error; city orders use category errors by horizon; hourly precipitation uses binary, relative, and absolute event scoring; long-range daily precipitation uses MAE",
   "horizon_buckets": [
@@ -9,7 +9,7 @@
     "11-48h",
     "3-5 dni"
   ],
-  "sample_total": 3552,
+  "sample_total": 3780,
   "source_order": [
     "meteoswiss_icon_ch1",
     "best_match",
@@ -24,42 +24,42 @@
       "label": "Open-Meteo - MeteoSwiss ICON CH1",
       "average_rank": 2.167,
       "ranked_contexts": 12,
-      "samples": 592
+      "samples": 630
     },
     {
       "source_id": "best_match",
       "label": "Open-Meteo - optimiziran",
-      "average_rank": 2.583,
+      "average_rank": 2.333,
       "ranked_contexts": 12,
-      "samples": 592
+      "samples": 630
     },
     {
       "source_id": "icon_eu",
       "label": "Open-Meteo - DWD ICON EU",
       "average_rank": 3.25,
       "ranked_contexts": 12,
-      "samples": 592
+      "samples": 630
     },
     {
       "source_id": "arso",
       "label": "ARSO",
       "average_rank": 3.833,
       "ranked_contexts": 12,
-      "samples": 592
+      "samples": 630
     },
     {
       "source_id": "gfs_seamless",
       "label": "Open-Meteo - NOAA GFS",
-      "average_rank": 4.5,
+      "average_rank": 4.667,
       "ranked_contexts": 12,
-      "samples": 592
+      "samples": 630
     },
     {
       "source_id": "ecmwf_ifs025",
       "label": "Open-Meteo - ECMWF IFS 0.25",
-      "average_rank": 4.667,
+      "average_rank": 4.75,
       "ranked_contexts": 12,
-      "samples": 592
+      "samples": 630
     }
   ],
   "cities": {
@@ -67,8 +67,8 @@
       "1-10h": {
         "temperature": [
           "best_match",
-          "gfs_seamless",
           "meteoswiss_icon_ch1",
+          "gfs_seamless",
           "ecmwf_ifs025",
           "arso",
           "icon_eu"
@@ -83,8 +83,8 @@
         ],
         "wind": [
           "gfs_seamless",
-          "best_match",
           "ecmwf_ifs025",
+          "best_match",
           "icon_eu",
           "meteoswiss_icon_ch1",
           "arso"
@@ -92,11 +92,11 @@
       },
       "11-48h": {
         "temperature": [
-          "gfs_seamless",
           "ecmwf_ifs025",
+          "gfs_seamless",
           "arso",
-          "icon_eu",
           "best_match",
+          "icon_eu",
           "meteoswiss_icon_ch1"
         ],
         "precipitation": [
@@ -121,8 +121,8 @@
       "1-10h": {
         "temperature": [
           "meteoswiss_icon_ch1",
-          "arso",
           "best_match",
+          "arso",
           "ecmwf_ifs025",
           "icon_eu",
           "gfs_seamless"
@@ -137,9 +137,9 @@
         ],
         "wind": [
           "arso",
-          "icon_eu",
-          "meteoswiss_icon_ch1",
           "best_match",
+          "meteoswiss_icon_ch1",
+          "icon_eu",
           "gfs_seamless",
           "ecmwf_ifs025"
         ]
@@ -149,8 +149,8 @@
           "meteoswiss_icon_ch1",
           "best_match",
           "arso",
-          "ecmwf_ifs025",
           "icon_eu",
+          "ecmwf_ifs025",
           "gfs_seamless"
         ],
         "precipitation": [
@@ -174,11 +174,11 @@
     "Celje": {
       "1-10h": {
         "temperature": [
-          "best_match",
           "meteoswiss_icon_ch1",
+          "best_match",
           "gfs_seamless",
-          "arso",
           "ecmwf_ifs025",
+          "arso",
           "icon_eu"
         ],
         "precipitation": [
@@ -200,8 +200,8 @@
       },
       "11-48h": {
         "temperature": [
-          "best_match",
           "meteoswiss_icon_ch1",
+          "best_match",
           "ecmwf_ifs025",
           "arso",
           "gfs_seamless",
@@ -217,8 +217,8 @@
         ],
         "wind": [
           "gfs_seamless",
-          "ecmwf_ifs025",
           "icon_eu",
+          "ecmwf_ifs025",
           "meteoswiss_icon_ch1",
           "best_match",
           "arso"
@@ -244,8 +244,8 @@
           "ecmwf_ifs025"
         ],
         "wind": [
-          "best_match",
           "meteoswiss_icon_ch1",
+          "best_match",
           "gfs_seamless",
           "icon_eu",
           "ecmwf_ifs025",
@@ -273,17 +273,17 @@
           "gfs_seamless",
           "icon_eu",
           "best_match",
-          "arso",
+          "meteoswiss_icon_ch1",
           "ecmwf_ifs025",
-          "meteoswiss_icon_ch1"
+          "arso"
         ]
       }
     },
     "Kranj": {
       "1-10h": {
         "temperature": [
-          "gfs_seamless",
           "best_match",
+          "gfs_seamless",
           "meteoswiss_icon_ch1",
           "ecmwf_ifs025",
           "arso",
@@ -355,8 +355,8 @@
           "arso",
           "best_match",
           "ecmwf_ifs025",
-          "icon_eu",
           "meteoswiss_icon_ch1",
+          "icon_eu",
           "gfs_seamless"
         ]
       },
@@ -366,8 +366,8 @@
           "gfs_seamless",
           "icon_eu",
           "arso",
-          "ecmwf_ifs025",
-          "meteoswiss_icon_ch1"
+          "meteoswiss_icon_ch1",
+          "ecmwf_ifs025"
         ],
         "precipitation": [
           "icon_eu",
