@@ -1,7 +1,7 @@
 {
   "version": 1,
   "status": "ok",
-  "generated_at": "2026-09-13T22:56:14+00:00",
+  "generated_at": "2026-09-14T18:59:06+00:00",
   "valid_days": 7,
   "method": "global order uses average tied rank by city and horizon using Zevs overall_error; city orders use category errors by horizon; regional orders average those per-city category errors within each ARSO region and break ties by the global order; `overall`/`overall_order` rank by the mean rank across the 1-10h and 11-48h buckets and all three categories, weighted precipitation 1.3 / temperature 1.0 / wind 0.8, excluding precipitation-only sources; hourly precipitation base score is the absolute difference between 0-5 forecast/observed precipitation categories, discounted up to 50% for a matching mm sum in the +-1h (3-hour, t-1/t/t+1) window; dry/dry hours (no rain forecast or observed) are excluded from scoring; long-range daily precipitation uses MAE; the precipitation-probabilities evidence is NOT published here (it lives in the HTML report) -- it was never a ranking input and grew past GitHub's upload limit",
   "horizon_buckets": [
@@ -9,7 +9,7 @@
     "11-48h",
     "3-5 dni"
   ],
-  "sample_total": 440782,
+  "sample_total": 444252,
   "source_order": [
     "best_match",
     "arso",
@@ -28,73 +28,73 @@
     "icon_eu",
     "geosphere_arome_austria",
     "chmi_aladin_central_europe_2km",
-    "gfs_seamless",
     "ecmwf_ifs025",
+    "gfs_seamless",
     "arso"
   ],
   "ranked_sources": [
     {
       "source_id": "best_match",
       "label": "Open-Meteo - optimiziran",
-      "average_rank": 2.2,
+      "average_rank": 2.233,
       "ranked_contexts": 30,
-      "samples": 7312
+      "samples": 7652
     },
     {
       "source_id": "arso",
       "label": "ARSO",
-      "average_rank": 3.7,
+      "average_rank": 3.633,
       "ranked_contexts": 30,
-      "samples": 7088
+      "samples": 7358
     },
     {
       "source_id": "gfs_seamless",
       "label": "Open-Meteo - NOAA GFS",
-      "average_rank": 3.7,
+      "average_rank": 3.733,
       "ranked_contexts": 30,
-      "samples": 7312
+      "samples": 7652
     },
     {
       "source_id": "icon_eu",
       "label": "Open-Meteo - DWD ICON EU",
       "average_rank": 4.467,
       "ranked_contexts": 30,
-      "samples": 77478
+      "samples": 77818
     },
     {
       "source_id": "ecmwf_ifs025",
       "label": "Open-Meteo - ECMWF IFS 0.25",
       "average_rank": 4.533,
       "ranked_contexts": 30,
-      "samples": 77298
+      "samples": 77638
     },
     {
       "source_id": "chmi_aladin_central_europe_2km",
       "label": "Open-Meteo - CHMI Aladin Central Europe 2km",
       "average_rank": 4.733,
       "ranked_contexts": 30,
-      "samples": 36749
+      "samples": 37089
     },
     {
       "source_id": "italia_meteo_arpae_icon_2i",
       "label": "Open-Meteo - ItaliaMeteo ICON 2I",
       "average_rank": 5.533,
       "ranked_contexts": 30,
-      "samples": 69833
+      "samples": 70173
     },
     {
       "source_id": "meteoswiss_icon_ch1",
       "label": "Open-Meteo - MeteoSwiss ICON CH1",
-      "average_rank": 7.333,
+      "average_rank": 7.3,
       "ranked_contexts": 30,
-      "samples": 77458
+      "samples": 77798
     },
     {
       "source_id": "geosphere_arome_austria",
       "label": "Open-Meteo - GeoSphere AROME Austria",
-      "average_rank": 8.7,
+      "average_rank": 8.75,
       "ranked_contexts": 20,
-      "samples": 76352
+      "samples": 76692
     }
   ],
   "cities": {
@@ -159,8 +159,8 @@
           "gfs_seamless",
           "chmi_aladin_central_europe_2km",
           "geosphere_arome_austria",
-          "arso",
-          "icon_eu"
+          "icon_eu",
+          "arso"
         ]
       },
       "3-5 dni": {
@@ -232,8 +232,8 @@
           "icon_eu",
           "best_match",
           "gfs_seamless",
-          "arso",
           "italia_meteo_arpae_icon_2i",
+          "arso",
           "meteoswiss_icon_ch1",
           "geosphere_arome_austria",
           "chmi_aladin_central_europe_2km",
@@ -242,8 +242,8 @@
       },
       "11-48h": {
         "temperature": [
-          "meteoswiss_icon_ch1",
           "icon_eu",
+          "meteoswiss_icon_ch1",
           "italia_meteo_arpae_icon_2i",
           "best_match",
           "gfs_seamless",
@@ -306,8 +306,8 @@
       },
       "overall": [
         "italia_meteo_arpae_icon_2i",
-        "meteoswiss_icon_ch1",
         "icon_eu",
+        "meteoswiss_icon_ch1",
         "best_match",
         "gfs_seamless",
         "chmi_aladin_central_europe_2km",
@@ -319,8 +319,8 @@
     "Celje": {
       "1-10h": {
         "temperature": [
-          "meteoswiss_icon_ch1",
           "italia_meteo_arpae_icon_2i",
+          "meteoswiss_icon_ch1",
           "best_match",
           "gfs_seamless",
           "icon_eu",
@@ -342,8 +342,8 @@
           "icon_eu",
           "gfs_seamless",
           "italia_meteo_arpae_icon_2i",
-          "meteoswiss_icon_ch1",
           "ecmwf_ifs025",
+          "meteoswiss_icon_ch1",
           "arso",
           "chmi_aladin_central_europe_2km",
           "geosphere_arome_austria"
@@ -356,10 +356,10 @@
           "meteoswiss_icon_ch1",
           "icon_eu",
           "gfs_seamless",
-          "arso",
           "chmi_aladin_central_europe_2km",
+          "ecmwf_ifs025",
           "geosphere_arome_austria",
-          "ecmwf_ifs025"
+          "arso"
         ],
         "precipitation": [
           "chmi_aladin_central_europe_2km",
@@ -415,13 +415,13 @@
       },
       "overall": [
         "best_match",
-        "meteoswiss_icon_ch1",
         "italia_meteo_arpae_icon_2i",
+        "meteoswiss_icon_ch1",
         "icon_eu",
         "gfs_seamless",
         "chmi_aladin_central_europe_2km",
-        "geosphere_arome_austria",
         "ecmwf_ifs025",
+        "geosphere_arome_austria",
         "arso"
       ]
     },
@@ -539,10 +539,10 @@
         "temperature": [
           "meteoswiss_icon_ch1",
           "gfs_seamless",
-          "icon_eu",
           "best_match",
-          "arso",
+          "icon_eu",
           "ecmwf_ifs025",
+          "arso",
           "geosphere_arome_austria",
           "italia_meteo_arpae_icon_2i",
           "chmi_aladin_central_europe_2km"
@@ -557,10 +557,10 @@
         ],
         "wind": [
           "arso",
-          "icon_eu",
           "meteoswiss_icon_ch1",
-          "gfs_seamless",
+          "icon_eu",
           "best_match",
+          "gfs_seamless",
           "geosphere_arome_austria",
           "italia_meteo_arpae_icon_2i",
           "ecmwf_ifs025",
@@ -590,8 +590,8 @@
         "wind": [
           "icon_eu",
           "meteoswiss_icon_ch1",
-          "arso",
           "best_match",
+          "arso",
           "geosphere_arome_austria",
           "gfs_seamless",
           "ecmwf_ifs025",
@@ -635,8 +635,8 @@
         "meteoswiss_icon_ch1",
         "icon_eu",
         "best_match",
-        "arso",
         "gfs_seamless",
+        "arso",
         "geosphere_arome_austria",
         "italia_meteo_arpae_icon_2i",
         "chmi_aladin_central_europe_2km",
@@ -772,14 +772,14 @@
           "ecmwf_ifs025"
         ],
         "wind": [
-          "best_match",
           "italia_meteo_arpae_icon_2i",
+          "best_match",
           "icon_eu",
           "meteoswiss_icon_ch1",
           "chmi_aladin_central_europe_2km",
           "arso",
-          "geosphere_arome_austria",
           "ecmwf_ifs025",
+          "geosphere_arome_austria",
           "gfs_seamless"
         ]
       },
@@ -804,8 +804,8 @@
           "geosphere_arome_austria"
         ],
         "wind": [
-          "best_match",
           "italia_meteo_arpae_icon_2i",
+          "best_match",
           "icon_eu",
           "meteoswiss_icon_ch1",
           "chmi_aladin_central_europe_2km",
@@ -848,8 +848,8 @@
         ]
       },
       "overall": [
-        "best_match",
         "italia_meteo_arpae_icon_2i",
+        "best_match",
         "icon_eu",
         "meteoswiss_icon_ch1",
         "chmi_aladin_central_europe_2km",
@@ -881,8 +881,8 @@
           "geosphere_arome_austria"
         ],
         "wind": [
-          "best_match",
           "gfs_seamless",
+          "best_match",
           "icon_eu",
           "ecmwf_ifs025",
           "meteoswiss_icon_ch1",
@@ -915,12 +915,12 @@
         "wind": [
           "gfs_seamless",
           "best_match",
-          "ecmwf_ifs025",
-          "icon_eu",
           "meteoswiss_icon_ch1",
+          "icon_eu",
+          "ecmwf_ifs025",
           "italia_meteo_arpae_icon_2i",
-          "arso",
           "geosphere_arome_austria",
+          "arso",
           "chmi_aladin_central_europe_2km"
         ]
       },
@@ -971,9 +971,9 @@
     "Postojna": {
       "1-10h": {
         "temperature": [
+          "meteoswiss_icon_ch1",
           "italia_meteo_arpae_icon_2i",
           "icon_eu",
-          "meteoswiss_icon_ch1",
           "ecmwf_ifs025",
           "best_match",
           "arso",
@@ -1005,12 +1005,12 @@
         "temperature": [
           "best_match",
           "meteoswiss_icon_ch1",
-          "icon_eu",
           "italia_meteo_arpae_icon_2i",
-          "gfs_seamless",
+          "icon_eu",
           "arso",
-          "ecmwf_ifs025",
           "chmi_aladin_central_europe_2km",
+          "gfs_seamless",
+          "ecmwf_ifs025",
           "geosphere_arome_austria"
         ],
         "precipitation": [
@@ -1066,28 +1066,28 @@
         ]
       },
       "overall": [
-        "icon_eu",
         "italia_meteo_arpae_icon_2i",
-        "best_match",
+        "icon_eu",
         "meteoswiss_icon_ch1",
-        "ecmwf_ifs025",
+        "best_match",
         "chmi_aladin_central_europe_2km",
-        "geosphere_arome_austria",
+        "ecmwf_ifs025",
         "arso",
+        "geosphere_arome_austria",
         "gfs_seamless"
       ]
     },
     "Vrhnika": {
       "1-10h": {
         "temperature": [
-          "italia_meteo_arpae_icon_2i",
           "meteoswiss_icon_ch1",
+          "italia_meteo_arpae_icon_2i",
           "best_match",
-          "ecmwf_ifs025",
           "geosphere_arome_austria",
+          "ecmwf_ifs025",
+          "chmi_aladin_central_europe_2km",
           "icon_eu",
           "gfs_seamless",
-          "chmi_aladin_central_europe_2km",
           "arso"
         ],
         "precipitation": [
@@ -1104,8 +1104,8 @@
           "gfs_seamless",
           "geosphere_arome_austria",
           "best_match",
-          "meteoswiss_icon_ch1",
           "italia_meteo_arpae_icon_2i",
+          "meteoswiss_icon_ch1",
           "ecmwf_ifs025",
           "chmi_aladin_central_europe_2km"
         ]
@@ -1115,12 +1115,12 @@
           "best_match",
           "italia_meteo_arpae_icon_2i",
           "meteoswiss_icon_ch1",
-          "geosphere_arome_austria",
           "icon_eu",
           "gfs_seamless",
+          "geosphere_arome_austria",
           "chmi_aladin_central_europe_2km",
-          "arso",
-          "ecmwf_ifs025"
+          "ecmwf_ifs025",
+          "arso"
         ],
         "precipitation": [
           "icon_eu",
@@ -1138,8 +1138,8 @@
           "best_match",
           "meteoswiss_icon_ch1",
           "ecmwf_ifs025",
-          "chmi_aladin_central_europe_2km",
-          "italia_meteo_arpae_icon_2i"
+          "italia_meteo_arpae_icon_2i",
+          "chmi_aladin_central_europe_2km"
         ]
       },
       "3-5 dni": {
@@ -1179,10 +1179,10 @@
         "best_match",
         "meteoswiss_icon_ch1",
         "italia_meteo_arpae_icon_2i",
-        "geosphere_arome_austria",
         "gfs_seamless",
-        "arso",
+        "geosphere_arome_austria",
         "chmi_aladin_central_europe_2km",
+        "arso",
         "ecmwf_ifs025"
       ]
     }
@@ -1195,10 +1195,10 @@
           "italia_meteo_arpae_icon_2i",
           "best_match",
           "geosphere_arome_austria",
-          "icon_eu",
-          "ecmwf_ifs025",
           "chmi_aladin_central_europe_2km",
+          "icon_eu",
           "arso",
+          "ecmwf_ifs025",
           "gfs_seamless"
         ],
         "precipitation": [
@@ -1224,8 +1224,8 @@
       "11-48h": {
         "temperature": [
           "italia_meteo_arpae_icon_2i",
-          "meteoswiss_icon_ch1",
           "best_match",
+          "meteoswiss_icon_ch1",
           "icon_eu",
           "geosphere_arome_austria",
           "ecmwf_ifs025",
@@ -1248,8 +1248,8 @@
           "best_match",
           "meteoswiss_icon_ch1",
           "ecmwf_ifs025",
-          "arso",
           "italia_meteo_arpae_icon_2i",
+          "arso",
           "chmi_aladin_central_europe_2km"
         ]
       },
@@ -1292,9 +1292,9 @@
         "italia_meteo_arpae_icon_2i",
         "geosphere_arome_austria",
         "chmi_aladin_central_europe_2km",
-        "ecmwf_ifs025",
+        "arso",
         "gfs_seamless",
-        "arso"
+        "ecmwf_ifs025"
       ]
     },
     "NE": {
@@ -1338,8 +1338,8 @@
           "icon_eu",
           "gfs_seamless",
           "chmi_aladin_central_europe_2km",
-          "arso",
           "ecmwf_ifs025",
+          "arso",
           "geosphere_arome_austria"
         ],
         "precipitation": [
@@ -1522,8 +1522,8 @@
           "geosphere_arome_austria",
           "gfs_seamless",
           "arso",
-          "italia_meteo_arpae_icon_2i",
           "ecmwf_ifs025",
+          "italia_meteo_arpae_icon_2i",
           "chmi_aladin_central_europe_2km"
         ],
         "precipitation": [
@@ -1536,8 +1536,8 @@
         ],
         "wind": [
           "icon_eu",
-          "arso",
           "meteoswiss_icon_ch1",
+          "arso",
           "gfs_seamless",
           "best_match",
           "geosphere_arome_austria",
@@ -1548,12 +1548,12 @@
       },
       "11-48h": {
         "temperature": [
-          "best_match",
           "meteoswiss_icon_ch1",
+          "best_match",
           "icon_eu",
           "geosphere_arome_austria",
-          "arso",
           "gfs_seamless",
+          "arso",
           "italia_meteo_arpae_icon_2i",
           "ecmwf_ifs025",
           "chmi_aladin_central_europe_2km"
@@ -1614,9 +1614,9 @@
         "meteoswiss_icon_ch1",
         "icon_eu",
         "best_match",
-        "arso",
         "gfs_seamless",
         "geosphere_arome_austria",
+        "arso",
         "italia_meteo_arpae_icon_2i",
         "chmi_aladin_central_europe_2km",
         "ecmwf_ifs025"
@@ -1628,8 +1628,8 @@
           "meteoswiss_icon_ch1",
           "icon_eu",
           "italia_meteo_arpae_icon_2i",
-          "ecmwf_ifs025",
           "arso",
+          "ecmwf_ifs025",
           "geosphere_arome_austria",
           "best_match",
           "chmi_aladin_central_europe_2km",
@@ -1645,8 +1645,8 @@
         ],
         "wind": [
           "best_match",
-          "geosphere_arome_austria",
           "italia_meteo_arpae_icon_2i",
+          "geosphere_arome_austria",
           "ecmwf_ifs025",
           "icon_eu",
           "chmi_aladin_central_europe_2km",
@@ -1680,11 +1680,11 @@
           "icon_eu",
           "best_match",
           "geosphere_arome_austria",
-          "chmi_aladin_central_europe_2km",
           "ecmwf_ifs025",
+          "chmi_aladin_central_europe_2km",
           "meteoswiss_icon_ch1",
-          "arso",
-          "gfs_seamless"
+          "gfs_seamless",
+          "arso"
         ]
       },
       "3-5 dni": {
