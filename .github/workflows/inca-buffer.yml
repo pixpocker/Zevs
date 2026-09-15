@@ -60,9 +60,9 @@ jobs:
       # time, not at workflow-authoring time.
       artifacts: ${{ steps.fetch.outputs.artifacts }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.13"
 
@@ -83,7 +83,7 @@ jobs:
         # individually under its own real name. 1-day retention -- this
         # bundle is never meant to be consumed directly, only the
         # per-reference_time artifacts the next job extracts from it.
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           # Deliberately does NOT start with "inca-" -- that is exactly the
           # prefix `zevs inca-buffer-import` filters on
@@ -108,7 +108,7 @@ jobs:
         artifact: ${{ fromJson(needs.fetch.outputs.artifacts) }}
     steps:
       - name: Download staged payloads
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: zevs-inca-buffer-staging-${{ github.run_id }}-${{ github.run_attempt }}
           path: artifact
@@ -137,7 +137,7 @@ jobs:
           echo "OK: '$path' for artifact '${{ matrix.artifact.name }}' is present, $size bytes."
 
       - name: Upload this run's INCA artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ matrix.artifact.name }}
           path: ${{ matrix.artifact.path }}
