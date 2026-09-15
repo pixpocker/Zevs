@@ -1,0 +1,145 @@
+name: GeoSphere INCA buffer
+
+# 15-min historical buffer for GeoSphere Austria's INCA nowcasting product
+# (see AGENTS.md, "GeoSphere INCA GitHub buffer"). Fetches whatever INCA
+# run is currently available for every configured location and uploads ONE
+# artifact per distinct reference_time observed (almost always exactly
+# one -- see scripts/geosphere_inca_fetch_standalone.py's `build_artifacts`
+# docstring for the rare mid-fetch-rollover case that produces more than
+# one; locations are NEVER mixed across different reference_times into a
+# single artifact). The local `zevs inca-buffer-import` (a SEPARATE ZEVS
+# development repo's scripts/zevs_run_task.ps1, existing ~3h cycle)
+# downloads, imports, and deletes each artifact after a fully successful
+# import.
+#
+# This repo (pixpocker/Zevs) deliberately holds ONLY this workflow file and
+# scripts/geosphere_inca_fetch_standalone.py -- it is a lightweight public
+# publish/buffer target (also receiving the Zefir model order JSON and two
+# HTML reports via a separate mechanism), NOT the ZEVS source-code repo.
+# The standalone fetch script is therefore fully self-contained (stdlib +
+# requests only, no import of the actual weather_reliability package) --
+# see its own module docstring for what it does and does not do (fetch +
+# light validity check + reference_time grouping only; all canonical
+# parsing/aggregation/DB writes/scoring stay in the separate local project).
+#
+# This buffer is a historical-evaluation input for ZEVS only -- Zefir's
+# live Nowcasting overlay fetches GeoSphere directly and never reads these
+# artifacts (see Zefir's own AGENTS.md).
+#
+# Deliberately no exact-quarter-hour cron: GitHub's scheduler does not
+# guarantee on-time delivery, and requiring :00/:15/:30/:45 exactly would
+# just mean silently missed runs during periods of platform load. An
+# offset spreads this workflow off the most congested top-of-hour/quarter
+# slots.
+on:
+  schedule:
+    - cron: "7,22,37,52 * * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  # A run that's still fetching when the next one fires would just produce
+  # a second near-duplicate artifact for (almost) the same run -- harmless
+  # downstream (the importer already de-duplicates at the DB row level via
+  # the existing UNIQUE constraint), but wasteful. Do not cancel an
+  # in-progress run either -- let it finish and upload what it has.
+  group: geosphere-inca-buffer
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      # JSON array of {"name": ..., "path": ...} -- one entry per artifact
+      # produced this run (almost always exactly one; see module docstring
+      # above for the mid-fetch reference_time rollover case). Read by the
+      # `upload` job's matrix below, since the count is only known at fetch
+      # time, not at workflow-authoring time.
+      artifacts: ${{ steps.fetch.outputs.artifacts }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install minimal dependencies
+        # This repo has no config.yml/weather_reliability package to parse
+        # or import -- the fetch script is fully self-contained (stdlib +
+        # requests only, locations hardcoded), see its module docstring.
+        run: pip install requests
+
+      - name: Fetch GeoSphere INCA for all locations
+        id: fetch
+        run: python scripts/geosphere_inca_fetch_standalone.py --out-dir artifact
+
+      - name: Stage fetched payloads for the upload job
+        # actions/upload-artifact runs in a fresh job/runner with no access
+        # to this job's filesystem, so the matrix job below downloads this
+        # short-lived staging bundle and re-uploads each file inside it
+        # individually under its own real name. 1-day retention -- this
+        # bundle is never meant to be consumed directly, only the
+        # per-reference_time artifacts the next job extracts from it.
+        uses: actions/upload-artifact@v4
+        with:
+          # Deliberately does NOT start with "inca-" -- that is exactly the
+          # prefix `zevs inca-buffer-import` filters on
+          # (geosphere_inca_buffer.artifact_prefix, config.yml), and
+          # list_artifacts() matches by `name.startswith(prefix)`. A name
+          # like "inca-buffer-staging-..." WOULD match that filter and get
+          # listed/downloaded/imported/deleted by the importer as if it
+          # were a real per-run artifact -- this is transport-only, never
+          # meant to be seen by it.
+          name: zevs-inca-buffer-staging-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifact/
+          retention-days: 1
+          if-no-files-found: error
+
+  upload:
+    needs: fetch
+    if: needs.fetch.outputs.artifacts != '[]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        artifact: ${{ fromJson(needs.fetch.outputs.artifacts) }}
+    steps:
+      - name: Download staged payloads
+        uses: actions/download-artifact@v4
+        with:
+          name: zevs-inca-buffer-staging-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifact
+
+      - name: Sanity check -- confirm the staged file actually arrived
+        # Defensive, not decorative: if the fetch->upload handoff is ever
+        # broken by a future edit (e.g. someone changes the fetch job to
+        # only emit $GITHUB_OUTPUT paths without the staging-artifact
+        # upload/download pair above), this fails loudly with the exact
+        # missing path instead of actions/upload-artifact's generic
+        # if-no-files-found error a step later.
+        run: |
+          set -euo pipefail
+          path="${{ matrix.artifact.path }}"
+          if [ ! -f "$path" ]; then
+            echo "::error::Staged file '$path' for artifact '${{ matrix.artifact.name }}' was not found after download -- the fetch->upload job handoff is broken (see the 'Stage fetched payloads'/'Download staged payloads' steps)." >&2
+            echo "Directory listing of $(dirname "$path"):" >&2
+            ls -la "$(dirname "$path")" >&2 || echo "(directory does not exist)" >&2
+            exit 1
+          fi
+          size=$(wc -c < "$path")
+          if [ "$size" -eq 0 ]; then
+            echo "::error::Staged file '$path' for artifact '${{ matrix.artifact.name }}' exists but is empty (0 bytes)." >&2
+            exit 1
+          fi
+          echo "OK: '$path' for artifact '${{ matrix.artifact.name }}' is present, $size bytes."
+
+      - name: Upload this run's INCA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact.name }}
+          path: ${{ matrix.artifact.path }}
+          retention-days: 14
+          if-no-files-found: error
