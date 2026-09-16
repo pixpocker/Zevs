@@ -1,0 +1,71 @@
+name: ARSO forecast buffer
+
+# GitHub archive buffer for ARSO location forecasts (see AGENTS.md, "ARSO
+# forecast GitHub archive buffer"). Fetches every configured location's
+# ARSO forecast and uploads ONE artifact per run (unlike the GeoSphere INCA
+# buffer, ARSO's payload has no single top-level run/reference timestamp to
+# split by -- see scripts/arso_forecast_fetch_standalone.py's docstring).
+# The local `zevs arso-forecast-buffer-import` (part of `zevs collect` as
+# of the 2026-09 "collect consolidation") downloads, imports, and deletes
+# each artifact after a fully successful import.
+#
+# This repo (pixpocker/Zevs) deliberately holds ONLY this workflow file and
+# scripts/arso_forecast_fetch_standalone.py -- same lightweight public
+# publish/buffer target used by .github/workflows/inca-buffer.yml, NOT the
+# ZEVS source-code repo. The standalone fetch script is fully self-
+# contained (stdlib + requests only).
+#
+# ARSO forecasts do not update on anything close to a 15-minute cadence, so
+# this runs far less often than the INCA buffer -- every ~20 minutes is
+# already generous headroom relative to `zevs collect`'s own ~3h cycle and
+# the default 180-minute freshness threshold (config.yml's
+# `arso_forecast_buffer.max_staleness_minutes`).
+on:
+  schedule:
+    - cron: "12,32,52 * * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  # Same reasoning as the INCA buffer's concurrency group: a run still
+  # fetching when the next one fires would just produce a second
+  # near-duplicate artifact -- harmless downstream (the importer already
+  # de-duplicates at the DB row level via the existing UNIQUE constraint),
+  # but wasteful. Never cancel an in-progress run.
+  group: arso-forecast-buffer
+  cancel-in-progress: false
+
+jobs:
+  fetch-and-upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      - name: Install minimal dependencies
+        # This repo has no config.yml/weather_reliability package to parse
+        # or import -- the fetch script is fully self-contained (stdlib +
+        # requests only, locations hardcoded), see its module docstring.
+        run: pip install requests
+
+      - name: Fetch ARSO forecast for all locations
+        id: fetch
+        run: python scripts/arso_forecast_fetch_standalone.py --out-dir artifact
+
+      - name: Upload this run's ARSO forecast artifact
+        # No fan-out matrix needed (unlike inca-buffer.yml) -- this script
+        # always produces exactly one artifact per run, so it can be
+        # uploaded directly from this same job without the fetch/upload job
+        # split the INCA buffer needs for its variable-count case.
+        uses: actions/upload-artifact@v7
+        with:
+          name: ${{ fromJson(steps.fetch.outputs.artifacts)[0].name }}
+          path: artifact/
+          retention-days: 14
+          if-no-files-found: error
