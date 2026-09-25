@@ -1,7 +1,7 @@
 {
   "version": 1,
   "status": "ok",
-  "generated_at": "2026-09-24T06:33:50+00:00",
+  "generated_at": "2026-09-25T05:15:27+00:00",
   "valid_days": 7,
   "method": "global order uses average tied rank by city and horizon using a temperature+precipitation+wind-only general-ranking composite (icon/weather-phenomena/thunderstorm/fog are categorical diagnostics, never part of general ranking); city orders use category errors by horizon; regional orders average those per-city category errors within each ARSO region and break ties by the global order; `overall`/`overall_order` rank by the mean rank across the 1-10h and 11-48h buckets and all three categories, weighted precipitation 1.3 / temperature 1.0 / wind 0.8, excluding precipitation-only sources; hourly precipitation base score is the absolute difference between 0-5 forecast/observed precipitation categories, discounted up to 50% for a matching mm sum in the +-1h (3-hour, t-1/t/t+1) window; dry/dry hours (no rain forecast or observed) are excluded from scoring; long-range daily precipitation uses MAE; the precipitation-probabilities evidence is NOT published here (it lives in the HTML report) -- it was never a ranking input and grew past GitHub's upload limit",
   "horizon_buckets": [
