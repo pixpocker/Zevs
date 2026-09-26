@@ -116,6 +116,14 @@
     .rank-score {
       color: var(--muted);
     }
+    #ranking-table .rank-list li {
+      cursor: pointer;
+    }
+    #ranking-table .rank-list li.model-hl,
+    #ranking-table .rank-list li.model-hl .rank-score {
+      color: #d10000;
+      font-weight: 700;
+    }
     .detection-table tr.provisional-row td {
       color: var(--muted);
     }
@@ -325,7 +333,7 @@
 <body>
 <main>
   <h1>Zanesljivost vremenskih virov</h1>
-  <div class="muted" style="font-size:12px;">HTML ustvarjen: 2026-09-26 09:22</div>
+  <div class="muted" style="font-size:12px;">HTML ustvarjen: 2026-09-26 09:33</div>
   
   <nav class="tabs" role="tablist">
     <button type="button" class="tab-btn active" data-tab="ranking" role="tab" aria-selected="true">Ranking</button>
@@ -357,18 +365,27 @@
   // provisional items carry the `provisional-row` class + `pill-provisional`
   // status label, so the interactive table and the (still available)
   // server-rendered helpers share one markup shape.
+  // Click a model name to mark it red; click again to unmark. The choice
+  // lives in this closure (not in the re-rendered DOM), so it survives
+  // scope/region/city switches.
+  var highlighted = null;
+  function hlAttrs(model, baseClass) {
+    var cls = baseClass + (model === highlighted ? ' model-hl' : '');
+    return " data-model='" + escapeHtml(model).replace(/'/g, '&#39;') + "'" +
+      (cls.trim() ? " class='" + cls.trim() + "'" : '');
+  }
   function rankCell(cell) {
     if (!cell) { return ''; }
     var ranked = cell.ranked || [];
     var provisional = cell.provisional || [];
     if (!ranked.length && !provisional.length) { return ''; }
     var items = ranked.map(function (entry) {
-      return "<li>" + escapeHtml(entry[0]) + " <span class='rank-score'>(" +
+      return "<li" + hlAttrs(entry[0], '') + ">" + escapeHtml(entry[0]) + " <span class='rank-score'>(" +
         escapeHtml(fmt(entry[1])) + ")</span></li>";
     });
     provisional.forEach(function (entry) {
       var score = fmt(entry[1]);
-      items.push("<li class='provisional-row'>" + escapeHtml(entry[0]) +
+      items.push("<li" + hlAttrs(entry[0], 'provisional-row') + ">" + escapeHtml(entry[0]) +
         " <span class='rank-score'>(" + escapeHtml(score === '' ? '-' : score) +
         ")</span> <span class='pill-provisional'>" + escapeHtml(entry[2]) + "</span></li>");
     });
@@ -437,6 +454,16 @@
       renderBlocks(data.global);
     }
   }
+
+  table.addEventListener('click', function (ev) {
+    var li = ev.target.closest ? ev.target.closest('li[data-model]') : null;
+    if (!li) { return; }
+    var model = li.getAttribute('data-model');
+    highlighted = (highlighted === model) ? null : model;
+    Array.prototype.forEach.call(table.querySelectorAll('li[data-model]'), function (item) {
+      item.classList.toggle('model-hl', item.getAttribute('data-model') === highlighted);
+    });
+  });
 
   scopeSel.addEventListener('change', renderScope);
   // Initial state: Skupni ranking, no extra buttons.
